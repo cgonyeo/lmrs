@@ -1,0 +1,6 @@
+.stack-work
+*.hi
+*.ho
+*.o
+lmrs.aci
+dist
