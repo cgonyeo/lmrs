@@ -1,3 +1,4 @@
+{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeOperators #-}
 module Web.Mastodon.Lib.Registration.Client
     ( startAuth

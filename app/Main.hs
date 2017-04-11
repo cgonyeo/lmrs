@@ -95,10 +95,15 @@ authComplete s c moauthcode = do
 
 authResult :: LmrsState -> AuthCode -> Handler OAuthCode
 authResult s c = do
-    hmap <- liftIO $ readMVar (urlMap s)
+    hmap <- liftIO $ takeMVar (urlMap s)
     case HM.lookup c hmap of
-        Just (_,Just code) -> return $ OAuthCode code
-        _                  -> throwError err404
+        Just (_,Just code) -> do
+            let hmap' = HM.delete c hmap
+            liftIO $ putMVar (urlMap s) hmap'
+            return $ OAuthCode code
+        _                  -> do
+            liftIO $ putMVar (urlMap s) hmap
+            throwError err404
 
 
 app :: LmrsState -> Application
