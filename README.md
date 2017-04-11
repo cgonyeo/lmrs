@@ -8,8 +8,12 @@ facilitate that.
 When a libmastodon consumer wishes to authenticate against an instance, the
 following happens:
 
-- it will register with the lmrs
-- produce a short URL to the lmrs and present it to the user
+- register with the lmrs, and receive an auth code
+- register with the instance, using the auth code to construct the lmrs redirect
+  uri
+- send the instance registration information to the lmrs
+- use the auth code to produce a short URL to the lmrs and present it to the
+  user
 - the user will go to this URL, and lmrs will redirect them with the appropriate
   settings to the instance's login page
 - once authentication is complete the user is redirected back to the lmrs
