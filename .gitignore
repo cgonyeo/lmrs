@@ -4,3 +4,6 @@
 *.o
 lmrs.aci
 dist
+aci-build/app
+aci-build/src
+aci-build/LICENSE

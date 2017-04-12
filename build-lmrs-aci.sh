@@ -6,6 +6,16 @@ set -x
 if [ -e out ]; then
     rm -rf out
 fi
+if [ -e aci-build/app ]; then
+    rm -rf aci-build/app
+fi
+if [ -e aci-build/src ]; then
+    rm -rf aci-build/src
+fi
+
+cp -r app aci-build/app
+cp -r src aci-build/src
+cp -r LICENSE aci-build/LICENSE
 
 nix-env -i lmrs -f . -p out
 
@@ -27,3 +37,6 @@ sudo -s acbuild set-exec $(realpath out/bin/lmrs-exe)
 sudo -s acbuild set-name toot.taxi/lmrs
 
 sudo -s acbuild write --overwrite lmrs.aci
+
+rm out
+rm out-*-link

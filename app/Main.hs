@@ -75,7 +75,7 @@ auth s c = do
             redirect_uri'  = URIEncode.encodeText $ genSuccessURI s' c'
             scope'         = URIEncode.encodeText "read write follow"
         in E.encodeUtf8 $
-            server' `T.append` mastodonAuthEndpoint
+            "https://" `T.append` server' `T.append` mastodonAuthEndpoint
                 `T.append` "?" `T.append` f "response_type" response_type'
                 `T.append` "&" `T.append` f "client_id"     client_id'
                 `T.append` "&" `T.append` f "client_secret" client_secret'
@@ -112,5 +112,5 @@ app s = serve lmrsAPI (lmrsServer s)
 main :: IO ()
 main = do
     hmap <- newMVar (HM.empty)
-    let s = LmrsState hmap "https://smuggle.rs"
+    let s = LmrsState hmap "https://toot.taxi"
     run 8080 (app s)

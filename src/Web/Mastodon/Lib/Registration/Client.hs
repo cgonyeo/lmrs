@@ -33,8 +33,8 @@ startAuth
 
 authCodeToUserURL :: T.Text -> AuthCode -> T.Text
 authCodeToUserURL server authCode =
-        server `T.append` "/auth/" `T.append` authCode
+        "https://" `T.append` server `T.append` "/auth/" `T.append` authCode
 
 authCodeToRedirectURL :: T.Text -> AuthCode -> T.Text
 authCodeToRedirectURL server authCode =
-        server `T.append` "/authcomplete/" `T.append` authCode
+        "https://" `T.append` server `T.append` "/authcomplete/" `T.append` authCode

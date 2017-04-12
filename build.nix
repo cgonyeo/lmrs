@@ -5,14 +5,13 @@
 mkDerivation {
   pname = "lmrs";
   version = "0.1.0.0";
-  src = ./.;
+  src = ./aci-build;
   isLibrary = false;
   isExecutable = true;
   enableSharedExecutables = false;
   executableHaskellDepends = [
-    aeson lucid servant-client servant-lucid
-    base bytestring hashmap random servant servant-server text
-    uri-encode warp
+    aeson lucid servant-client servant-lucid base bytestring hashmap random
+    servant servant-server text uri-encode warp
   ];
   homepage = "https://github.com/dgonyeo/lmrs#readme";
   license = stdenv.lib.licenses.bsd3;
