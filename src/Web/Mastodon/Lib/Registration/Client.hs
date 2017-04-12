@@ -1,10 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TypeOperators #-}
+
 module Web.Mastodon.Lib.Registration.Client
     ( startAuth
     , authBegun
     , authResults
-    , authCodeToURL
+    , authCodeToUserURL
+    , authCodeToRedirectURL
     )
   where
 
@@ -29,6 +31,10 @@ startAuth
   :<|> authResults
     = client lmrsAPI
 
-authCodeToURL :: T.Text -> AuthCode -> T.Text
-authCodeToURL server authCode =
+authCodeToUserURL :: T.Text -> AuthCode -> T.Text
+authCodeToUserURL server authCode =
         server `T.append` "/auth/" `T.append` authCode
+
+authCodeToRedirectURL :: T.Text -> AuthCode -> T.Text
+authCodeToRedirectURL server authCode =
+        server `T.append` "/authcomplete/" `T.append` authCode

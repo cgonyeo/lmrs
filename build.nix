@@ -1,6 +1,6 @@
 { mkDerivation, aeson, base, bytestring, hashmap, lucid, random
-, servant, servant-lucid, servant-server, stdenv, text, uri-encode
-, wai, warp
+, servant, servant-client, servant-lucid, servant-server, stdenv
+, text, uri-encode, warp
 }:
 mkDerivation {
   pname = "lmrs";
@@ -10,8 +10,9 @@ mkDerivation {
   isExecutable = true;
   enableSharedExecutables = false;
   executableHaskellDepends = [
-    aeson base bytestring hashmap lucid random servant servant-lucid
-    servant-server text uri-encode wai warp
+    aeson lucid servant-client servant-lucid
+    base bytestring hashmap random servant servant-server text
+    uri-encode warp
   ];
   homepage = "https://github.com/dgonyeo/lmrs#readme";
   license = stdenv.lib.licenses.bsd3;
